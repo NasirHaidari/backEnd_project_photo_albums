@@ -6,6 +6,6 @@ router.get('/', (req, res) => {
 	res.send({ status: 'success' });
 });
 
-router.use('/movies', require('./movies'));
+router.use('/fotos', require('./fotos'));
 
 module.exports = router;

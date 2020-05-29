@@ -7,14 +7,14 @@
 require('dotenv').config();
 
 const app = require('../app');
-const debug = require('debug')('06-library:server');
+const debug = require('debug')('');
 const http = require('http');
 
 /**
  * Get port from environment and store in Express.
  */
 
-const port = normalizePort(process.env.PORT || '3000');
+const port = normalizePort(process.env.PORT || '4000');
 app.set('port', port);
 
 /**
