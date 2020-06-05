@@ -1,11 +1,27 @@
 const express = require('express');
 const router = express.Router();
 
-/* GET / */
+
+
+
 router.get('/', (req, res) => {
-	res.send({ status: 'success' });
+	res.send({
+		status: '_Welcome!_to login use /login To create signup use /register after the url ardress ',
+
+	});
+
 });
 
-router.use('/fotos', require('./fotos'));
+router.use('/register', require('./users'));
+
+
+router.post('/login', require('../controllers/auth_controller'));
+
+
+
+
+router.use('/photos', require('./photos'));
+router.use('/albums', require('./albums'));
+
 
 module.exports = router;

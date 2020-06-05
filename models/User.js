@@ -1,35 +1,37 @@
-
+/**
+ * User Model
+ */
 const bcrypt = require('bcrypt');
 
 module.exports = (bookshelf) => {
     return bookshelf.model('User', {
-        tableName: 'user',
-        books() {
-            return this.belongsToMany('Book');
-        }
+        tableName: 'users',
+        albums() {
+            return this.hasMany('Album');
+        },
+        photos() {
+            return this.hasMany('Photo');
+        },
     }, {
         hashSaltRounds: 10,
-
-        fetchById(id, fetchOptions = {}) {
+        fetchUserId(id, fetchOptions = {}) {
             return new this({ id }).fetch(fetchOptions);
         },
 
-        async login(username, password) {
-            // check if user exists
-            const user = await new this({ username }).fetch({ require: false });
-            if (!user) {
-                return false;
+
+        login: async function (email, password) {
+            try {
+                const user = await new this({ email }).fetch({ require: false });
+                if (!user) {
+                    return false;
+                }
+                const hash = user.get('password');
+                const result = await bcrypt.compare(password, hash);
+                return (result) ? user : false;
+            } catch (error) {
+                console.error(error);
             }
-
-            // get hashed password from db
-            const hash = user.get('password');
-
-            // generate hash of cleartext password
-            // compare new hash with hash from db
-            // return user if hashes match, otherwise false
-            return (await bcrypt.compare(password, hash))
-                ? user
-                : false;
-        },
+        }
     });
 };
+

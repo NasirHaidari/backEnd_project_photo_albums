@@ -1,0 +1,31 @@
+GET http://localhost:5000/
+
+###
+
+GET http://localhost:6000/photos
+
+###
+
+
+GET http://localhost:6000/albums
+
+###
+
+GET http://localhost:5000/
+Content-Type: application/json
+{
+    "email": "111@111.se",
+	"password": "111111"
+}
+
+
+###
+Post  http://localhost:6000/register
+Content-Type: application/json
+{
+	"email": "111@111.se",
+	"password": "111111",
+	"first_name": "J111",
+	"last_name": "111111"
+}
+
