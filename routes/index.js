@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
-
+const auth = require('../controllers/middlewares/auth');
+const authController = require('../controllers/auth_controller')
 
 
 
@@ -15,11 +16,13 @@ router.get('/', (req, res) => {
 router.use('/register', require('./users'));
 
 
-router.post('/login', require('../controllers/auth_controller'));
+router.post('/login', authController.login);
 
 
+router.post('/refresh', authController.refresh);
 
 
+//
 router.use('/photos', require('./photos'));
 router.use('/albums', require('./albums'));
 

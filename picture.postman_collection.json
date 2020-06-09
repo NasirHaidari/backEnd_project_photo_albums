@@ -1,0 +1,250 @@
+{
+	"info": {
+		"_postman_id": "b4adbff7-5fae-43e1-8ca0-973ca676d73d",
+		"name": "picture",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "POST Photo",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "testtest",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "test@test.se",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"title\": \"foto of me\",\n\"url\": \"https://cdn.pixabay.com/photo/2016/04/25/07/15/man-1351317_960_720.png\",\n\"comment\": \"no comments!\",\n\"user_id\": \"11\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:6000/photos",
+					"host": [
+						"localhost"
+					],
+					"port": "6000",
+					"path": [
+						"photos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create a a photo",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "testtest",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "test@test.se",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"title\": \"foto of me\",\n\"url\": \"https://cdn.pixabay.com/photo/2016/04/25/07/15/man-1351317_960_720.png\",\n\"comment\": \"no comments!\",\n\"user_id\": \"11\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:6000/photos",
+					"host": [
+						"localhost"
+					],
+					"port": "6000",
+					"path": [
+						"photos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create a a user",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "testtest",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "test@test.se",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"email\": \"test@test.se\",\n\"password\": \"123123\",\n\"first_name\": \"test\",\n\"last_name\": \"test\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:6000/register",
+					"host": [
+						"localhost"
+					],
+					"port": "6000",
+					"path": [
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login to get a token and refresh_token",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "$2b$10$DwCfoe9XbCXTYfCTPAymg.3sK5nds3c047qxa.LHMsroGq6DnSllC",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"email\": \"test@test.se\",\n\"password\": \"123123\",\n\"first_name\": \"test\",\n\"last_name\": \"test\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/login",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get albums by sending token to the server",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoxNCwiZW1haWwiOiJ0ZXN0QHRlc3Quc2UifSwiaWF0IjoxNTkxNzQwNTI3LCJleHAiOjE1OTE3NzY1Mjd9.HQcdQVhhfSnKwIm5Yr6elXtGZYw4_4OKLjlF_KBc-i0",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"email\": \"test@test.se\",\n\"password\": \"123123\",\n\"first_name\": \"test\",\n\"last_name\": \"test\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/albums",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"albums"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create a Album",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoxNCwiZW1haWwiOiJ0ZXN0QHRlc3Quc2UifSwiaWF0IjoxNTkxNzQwNTI3LCJleHAiOjE1OTE3NzY1Mjd9.HQcdQVhhfSnKwIm5Yr6elXtGZYw4_4OKLjlF_KBc-i0",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"email\": \"test@test.se\",\n\"password\": \"123123\",\n\"first_name\": \"test\",\n\"last_name\": \"test\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/albums",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"albums"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

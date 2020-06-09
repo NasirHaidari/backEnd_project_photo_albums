@@ -57,7 +57,7 @@ const index = async (req, res) => {
 
 	try {
 
-		const user = await User.fetchUserId(req.user.sub, { withRelated: 'photos' });
+		const user = await User.fetchUserId(req.data.user.id, { withRelated: 'photos' });
 		const photos = user.related('photos');
 
 		res.send({
@@ -86,7 +86,7 @@ const show = async (req, res) => {
 
 	try {
 		// Validate that everything is fine with the photo that the user wants to get
-		const photo = await validatePhoto(req.params.photoId, req.user.sub, res);
+		const photo = await validatePhoto(req.params.photoId, req.user.id, res);
 
 		if (!photo) { return; };
 
@@ -126,7 +126,7 @@ const createPhoto = async (req, res) => {
 
 	// check if photo title already exists in user's database
 	try {
-		const photo = await new Photo({ title: validData.title, user_id: req.user.sub }).fetch({ require: false });
+		const photo = await new Photo({ title: validData.title, user_id: req.user.id }).fetch({ require: false });
 		if (photo) {
 			res.status(409).send({
 				status: 'fail',
@@ -143,7 +143,7 @@ const createPhoto = async (req, res) => {
 		throw error;
 	}
 
-	validData.user_id = req.user.sub;
+	validData.user_id = req.user.id;
 	//save photo
 	try {
 
