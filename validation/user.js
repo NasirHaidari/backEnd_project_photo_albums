@@ -1,6 +1,5 @@
-/**
- * Users
- */
+
+
 
 const { User } = require('../models');
 const { body } = require('express-validator');
@@ -23,33 +22,7 @@ const userCreateRules = [
     body('last_name').isString().trim().isLength({ min: 3 }),
 ];
 
-//Photo 
-
-const photoCreateRules = [
-    body('title').isString().trim().isLength({ min: 3 }),
-    body('url').isString().trim().isLength({ min: 7 }),
-    body('comment').isString().trim().optional().isLength({ min: 3 }),
-];
-
-
-//Albums
-
-
-const storePhoteInAlbum = [
-    body('title').isString().trim().isLength({ min: 3 })
-
-];
-
-const AlbumCreateRules = [
-    body('title').isString().trim().isLength({ min: 2 })
-];
-
-
 
 module.exports = {
-    userCreateRules,
-    photoCreateRules,
-    AlbumCreateRules,
-    storePhoteInAlbum
+    userCreateRules
 }
-

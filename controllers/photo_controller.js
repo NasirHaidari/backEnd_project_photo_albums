@@ -1,9 +1,13 @@
-/**
- * Photo Controller
- */
+
+
+
+
+////photoController
+
 
 const { User, Photo } = require('../models');
 const { validationResult, matchedData } = require('express-validator');
+const models = require("../models");
 
 
 const validatePhoto = async (id, user_id, res) => {
@@ -41,7 +45,7 @@ const validatePhoto = async (id, user_id, res) => {
 	} catch (error) {
 		res.status(500).send({
 			status: 'error',
-			message: "Error when finding the requested photos",
+			message: "Error (1) when finding the requested photos",
 		});
 		throw error;
 	}
@@ -54,23 +58,19 @@ const validatePhoto = async (id, user_id, res) => {
  * GET /
  */
 const index = async (req, res) => {
-
 	try {
-
-		const user = await User.fetchUserId(req.data.user.id, { withRelated: 'photos' });
-		const photos = user.related('photos');
-
-		res.send({
-			status: 'success',
-			data: {
-				photos
-			}
+		const user = await new models.User({ id: req.user.id }).fetch({
+			withRelated: "photos"
 		});
+
+
+		const photos = user.related("photos");
+		res.send({ status: "success", data: { photos } });
 
 	} catch (error) {
 		res.status(500).send({
 			status: 'error',
-			message: "Error when finding the requested photos",
+			message: "Error (2) when finding the requested photos"
 		});
 		throw error;
 	}
@@ -84,29 +84,26 @@ const index = async (req, res) => {
  */
 const show = async (req, res) => {
 
+
 	try {
-		// Validate that everything is fine with the photo that the user wants to get
-		const photo = await validatePhoto(req.params.photoId, req.user.id, res);
+		const photo = await new models.Photo({
+			id: req.params.id,
+			user_id: req.user.id
+		}).fetch({ withRelated: ["albums"] });
+		res.send({ status: "success", data: { photo } });
 
-		if (!photo) { return; };
 
-		// if it belongs to the user, display it and its related albums
-		res.send({
-			status: 'success',
-			data: {
-				photo
-			}
+	} catch (err) {
+		res.status(404).send({
+			status: "error",
+			data: "Error (3) when finding the requested photo"
 		});
-
-	} catch (error) {
-		res.status(500).send({
-			status: 'error',
-			message: "Error when finding the requested photo",
-		});
-		throw error;
 	}
+};
 
-}
+
+
+
 
 //create photo
 const createPhoto = async (req, res) => {
@@ -123,22 +120,22 @@ const createPhoto = async (req, res) => {
 
 	// get the valid input data
 	const validData = matchedData(req);
+	validData.user_id = req.user.id;
 
-	// check if photo title already exists in user's database
 	try {
-		const photo = await new Photo({ title: validData.title, user_id: req.user.id }).fetch({ require: false });
-		if (photo) {
-			res.status(409).send({
-				status: 'fail',
-				data: 'Photo title already exists. Please choose another title.'
-			});
-			return;
-		}
+		const photo = await new Photo(validData).save();
+
+		res.send({
+			status: "success",
+			data: {
+				photo
+			}
+		});
 
 	} catch (error) {
 		res.status(500).send({
 			status: 'error',
-			message: "Error when finding the requested photo",
+			message: "Error (4) when creating a new photo",
 		});
 		throw error;
 	}

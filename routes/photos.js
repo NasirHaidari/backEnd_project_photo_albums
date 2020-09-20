@@ -1,11 +1,13 @@
-/**
- * Photo Routes
- */
+
+
+
+
+////Photo Rules
 
 const express = require('express');
 const router = express.Router();
 const { index, show, createPhoto, update, destroy } = require('../controllers/photo_controller');
-const { photoCreateRules } = require('../validation/validation');
+const { photoCreateRules } = require('../validation/photo');
 
 
 router.get('/', index);

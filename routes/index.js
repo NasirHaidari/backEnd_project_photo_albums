@@ -1,13 +1,15 @@
+
+
 const express = require('express');
 const router = express.Router();
 const auth = require('../controllers/middlewares/auth');
-const authController = require('../controllers/auth_controller')
+// const authController = require('../controllers/auth_controller')
 
 
 
 router.get('/', (req, res) => {
 	res.send({
-		status: '_Welcome!_to login use /login To create signup use /register after the url ardress ',
+		status: 'success'
 
 	});
 
@@ -15,16 +17,15 @@ router.get('/', (req, res) => {
 
 router.use('/register', require('./users'));
 
+// router.use('/profile', [auth.basic], require('./profile'));
 
-router.post('/login', authController.login);
+// router.post('/login', authController.login);
 
+// router.post('/refresh', authController.refresh);
 
-router.post('/refresh', authController.refresh);
+router.use('/photos', auth.basic, require('./photos'));
 
-
-//
-router.use('/photos', require('./photos'));
-router.use('/albums', require('./albums'));
+router.use('/albums', auth.basic, require('./albums'));
 
 
 module.exports = router;
