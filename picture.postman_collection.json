@@ -1,0 +1,270 @@
+{
+	"info": {
+		"_postman_id": "b4adbff7-5fae-43e1-8ca0-973ca676d73d",
+		"name": "picture",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "create a a photo",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "testtest",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "test@test.se",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"title\": \"foto of me\",\n\"url\": \"https://cdn.pixabay.com/photo/2016/04/25/07/15/man-1351317_960_720.png\",\n\"comment\": \"no comments!\",\n\"user_id\": \"11\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:6000/photos",
+					"host": [
+						"localhost"
+					],
+					"port": "6000",
+					"path": [
+						"photos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create a a user",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "testtest",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "test@test.se",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"email\": \"test4\n@test.se\",\n\"password\": \"123123\",\n\"first_name\": \"test\",\n\"last_name\": \"test\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/register",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST create Albums",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "jn@badcameraphotography.com",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "omg-smile",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"id\": \"22\",\r\n\"title\": \"Food\",\r\n\"comment\": \"no comments!\",\r\n\"user_id\": \"131\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/albums/",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"albums",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST create photo ",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "jn@badcameraphotography.com",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "omg-smile",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"title\": \"just testing\",\r\n\"url\": \"https://cdn.pixabay.com/photo\",\r\n\"comment\": \"no comments!\",\r\n\"user_id\": \"131\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/photos",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"photos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET user_photos",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "jn@badcameraphotography.com",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "omg-smile",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"jn@badcameraphotography.com\",\r\n    \"password\": \"omg-smile\",\r\n    \"first_name\": \"Johan\",\r\n    \"last_name\": \"Nordström\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/photos",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"photos"
+					]
+				},
+				"description": "get photos with specfic user"
+			},
+			"response": []
+		},
+		{
+			"name": "GET user_Albums_ Johans konto",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "jn@badcameraphotography.com",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "omg-smile",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"jn@badcameraphotography.com\",\r\n    \"password\": \"omg-smile\",\r\n    \"first_name\": \"Johan\",\r\n    \"last_name\": \"Nordström\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/albums",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"albums"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
