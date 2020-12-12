@@ -82,10 +82,10 @@ const index = async (req, res) => {
 
 
 const show = async (req, res) => {
-
+	
 	try {
 		const album = await new models.Album({
-			id: req.params.id,
+			id: req.params.albumId,
 			user_id: req.user.id
 		}).fetch({ withRelated: ["photos"] });
 		res.send({ status: "success", data: { album } });
